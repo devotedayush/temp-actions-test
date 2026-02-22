@@ -1,4 +1,4 @@
-name: Hello World Action
+name: Cache Workflow
 
 on:
   push:
@@ -11,3 +11,16 @@ jobs:
     steps:
       - name: 23f1001477@ds.study.iitm.ac.in
         run: echo "Hello, world!"
+
+      - name: Create cache directory
+        run: mkdir -p /tmp/my-cache && echo "cached" > /tmp/my-cache/data.txt
+
+      - name: Cache dependencies
+        id: cache-step
+        uses: actions/cache@v4
+        with:
+          path: /tmp/my-cache
+          key: cache-8e4d649
+
+      - name: prime-cache-8e4d649
+        run: echo "Cache hit: ${{ steps.cache-step.outputs.cache-hit }}"
