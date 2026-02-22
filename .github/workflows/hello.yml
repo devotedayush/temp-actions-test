@@ -2,7 +2,9 @@ name: Cache Workflow
 
 on:
   push:
-    branches: [master, main]
+    branches:
+      - master
+      - main
   workflow_dispatch:
 
 jobs:
@@ -23,4 +25,4 @@ jobs:
           key: cache-8e4d649
 
       - name: prime-cache-8e4d649
-        run: echo "Cache hit: ${{ steps.cache-step.outputs.cache-hit }}"
+        run: echo "Cache hit - ${{ steps.cache-step.outputs.cache-hit }}"
